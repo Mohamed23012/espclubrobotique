@@ -76,8 +76,12 @@ WSGI_APPLICATION = 'club_robotique.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'esp_club_robotic_db',  # Nom de la base de données créée
+        'USER': 'root',              # Nom de l'utilisateur MySQL
+        'PASSWORD': 'momo@popo',  # Mot de passe de l'utilisateur
+        'HOST': 'localhost',             # Ou l'adresse de ton serveur MySQL
+        'PORT': '3306',                  # Port par défaut de MySQL
     }
 }
 
@@ -113,10 +117,22 @@ USE_I18N = True
 USE_TZ = True
 
 
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
+
+import os
+
+# Configuration des fichiers media
+MEDIA_URL = '/media/'  # URL pour accéder aux fichiers média
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # Dossier où les fichiers seront stockés
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
